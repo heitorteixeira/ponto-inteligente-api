@@ -94,7 +94,7 @@ public class Funcionario implements Serializable {
 		this.cpf = cpf;
 	}
 
-	@Column(name = "valor_hora", nullable = false)
+	@Column(name = "valor_hora", nullable = true)
 	public BigDecimal getValorHora() {
 		return valorHora;
 	}
@@ -108,7 +108,7 @@ public class Funcionario implements Serializable {
 		this.valorHora = valorHora;
 	}
 
-	@Column(name = "qt_horas_trabalho_dia", nullable = false)
+	@Column(name = "qt_horas_trabalho_dia", nullable = true)
 	public Float getQtHorasTrabalhoDia() {
 		return qtHorasTrabalhoDia;
 	}
@@ -122,15 +122,15 @@ public class Funcionario implements Serializable {
 		this.qtHorasTrabalhoDia = qtHorasTrabalhoDia;
 	}
 
-	@Column(name = "qt_horas_almoco", nullable = false)
+	@Column(name = "qt_horas_almoco", nullable = true)
 	public Float getQtHorasAlmoco() {
 		return qtHorasAlmoco;
 	}
 	
-//	@Transient
-//	public Optional<Float> getQtHorasAlmocoOpt() {
-//		return Optional.ofNullable(qtHorasAlmoco);
-//	}
+	@Transient
+	public Optional<Float> getQtHorasAlmocoOpt() {
+		return Optional.ofNullable(qtHorasAlmoco);
+	}
 
 	public void setQtHorasAlmoco(Float qtHorasAlmoco) {
 		this.qtHorasAlmoco = qtHorasAlmoco;
