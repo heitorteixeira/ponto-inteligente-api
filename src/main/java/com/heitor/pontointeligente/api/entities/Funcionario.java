@@ -1,6 +1,5 @@
 package com.heitor.pontointeligente.api.entities;
 
-import java.beans.Transient;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -21,6 +20,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.heitor.pontointeligente.api.enums.PerfilEnum;
 
@@ -127,10 +127,10 @@ public class Funcionario implements Serializable {
 		return qtHorasAlmoco;
 	}
 	
-	@Transient
-	public Optional<Float> getQtHorasAlmocoOpt() {
-		return Optional.ofNullable(qtHorasAlmoco);
-	}
+//	@Transient
+//	public Optional<Float> getQtHorasAlmocoOpt() {
+//		return Optional.ofNullable(qtHorasAlmoco);
+//	}
 
 	public void setQtHorasAlmoco(Float qtHorasAlmoco) {
 		this.qtHorasAlmoco = qtHorasAlmoco;
