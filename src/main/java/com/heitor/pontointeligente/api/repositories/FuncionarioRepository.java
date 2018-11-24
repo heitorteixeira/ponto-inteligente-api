@@ -7,6 +7,7 @@ import com.heitor.pontointeligente.api.entities.Funcionario;
 
 @Transactional(readOnly = true)
 public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> {
+    
 	Funcionario findByCpf(String cpf);
 	
 	Funcionario findByEmail(String email);

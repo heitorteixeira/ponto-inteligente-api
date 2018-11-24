@@ -28,204 +28,177 @@ import com.heitor.pontointeligente.api.enums.PerfilEnum;
 @Table(name = "funcionario")
 public class Funcionario implements Serializable {
 
-	private static final long serialVersionUID = -7863671023211522381L;
+    private static final long serialVersionUID = -5754246207015712518L;
+    
+    private Long id;
+    private String nome;
+    private String email;
+    private String senha;
+    private String cpf;
+    private BigDecimal valorHora;
+    private Float qtdHorasTrabalhoDia;
+    private Float qtdHorasAlmoco;
+    private PerfilEnum perfil;
+    private Date dataCriacao;
+    private Date dataAtualizacao;
+    private Empresa empresa;
+    private List<Lancamento> lancamentos;
 
-	private Long id;
-	private String nome;
-	private String email;
-	private String senha;
-	private String cpf;
-	private BigDecimal valorHora;
-	private Float qtHorasTrabalhoDia;
-	private Float qtHorasAlmoco;
-	private PerfilEnum perfil;
-	private Date dataCriacao;
-	private Date dataAtualizacao;
-	private Empresa empresa;
-	private List<Lancamento> lancamentos;
-	
-	public Funcionario() {
-		
-	}
+    public Funcionario() {
+    }
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	public Long getId() {
-		return id;
-	}
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    public Long getId() {
+        return id;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	@Column(name = "nome", nullable = false)
-	public String getNome() {
-		return nome;
-	}
+    @Column(name = "nome", nullable = false)
+    public String getNome() {
+        return nome;
+    }
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	@Column(name = "email", nullable = false)
-	public String getEmail() {
-		return email;
-	}
+    @Column(name = "email", nullable = false)
+    public String getEmail() {
+        return email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	@Column(name = "senha", nullable = false)
-	public String getSenha() {
-		return senha;
-	}
+    @Column(name = "cpf", nullable = false)
+    public String getCpf() {
+        return cpf;
+    }
 
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
-	@Column(name = "cpf", nullable = false)
-	public String getCpf() {
-		return cpf;
-	}
+    @Column(name = "valor_hora", nullable = true)
+    public BigDecimal getValorHora() {
+        return valorHora;
+    }
+    
+    @Transient
+    public Optional<BigDecimal> getValorHoraOpt() {
+        return Optional.ofNullable(valorHora);
+    }
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+    public void setValorHora(BigDecimal valorHora) {
+        this.valorHora = valorHora;
+    }
 
-	@Column(name = "valor_hora", nullable = true)
-	public BigDecimal getValorHora() {
-		return valorHora;
-	}
-	
-	@Transient
-	public Optional<BigDecimal> getValorHoraOpt() {
-		return Optional.ofNullable(valorHora);
-	}
+    @Column(name = "qtd_horas_trabalho_dia", nullable = true)
+    public Float getQtdHorasTrabalhoDia() {
+        return qtdHorasTrabalhoDia;
+    }
+    
+    @Transient
+    public Optional<Float> getQtdHorasTrabalhoDiaOpt() {
+        return Optional.ofNullable(qtdHorasTrabalhoDia);
+    }
 
-	public void setValorHora(BigDecimal valorHora) {
-		this.valorHora = valorHora;
-	}
+    public void setQtdHorasTrabalhoDia(Float qtdHorasTrabalhoDia) {
+        this.qtdHorasTrabalhoDia = qtdHorasTrabalhoDia;
+    }
 
-	@Column(name = "qt_horas_trabalho_dia", nullable = true)
-	public Float getQtHorasTrabalhoDia() {
-		return qtHorasTrabalhoDia;
-	}
-	
-	@Transient
-	public Optional<Float> getQtHorasTrabalhoDiaOpt() {
-		return Optional.ofNullable(qtHorasTrabalhoDia);
-	}
+    @Column(name = "qtd_horas_almoco", nullable = true)
+    public Float getQtdHorasAlmoco() {
+        return qtdHorasAlmoco;
+    }
+    
+    @Transient
+    public Optional<Float> getQtdHorasAlmocoOpt() {
+        return Optional.ofNullable(qtdHorasAlmoco);
+    }
 
-	public void setQtHorasTrabalhoDia(Float qtHorasTrabalhoDia) {
-		this.qtHorasTrabalhoDia = qtHorasTrabalhoDia;
-	}
+    public void setQtdHorasAlmoco(Float qtdHorasAlmoco) {
+        this.qtdHorasAlmoco = qtdHorasAlmoco;
+    }
 
-	@Column(name = "qt_horas_almoco", nullable = true)
-	public Float getQtHorasAlmoco() {
-		return qtHorasAlmoco;
-	}
-	
-	@Transient
-	public Optional<Float> getQtHorasAlmocoOpt() {
-		return Optional.ofNullable(qtHorasAlmoco);
-	}
+    @Enumerated(EnumType.STRING)
+    @Column(name = "perfil", nullable = false)
+    public PerfilEnum getPerfil() {
+        return perfil;
+    }
 
-	public void setQtHorasAlmoco(Float qtHorasAlmoco) {
-		this.qtHorasAlmoco = qtHorasAlmoco;
-	}
+    public void setPerfil(PerfilEnum perfil) {
+        this.perfil = perfil;
+    }
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "perfil", nullable = false)
-	public PerfilEnum getPerfil() {
-		return perfil;
-	}
+    @Column(name = "data_criacao", nullable = false)
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
 
-	public void setPerfil(PerfilEnum perfil) {
-		this.perfil = perfil;
-	}
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
+    }
 
-	@Column(name = "data_cricao", nullable = false)
-	public Date getDataCriacao() {
-		return dataCriacao;
-	}
+    @Column(name = "data_atualizacao", nullable = false)
+    public Date getDataAtualizacao() {
+        return dataAtualizacao;
+    }
 
-	public void setDataCriacao(Date dataCriacao) {
-		this.dataCriacao = dataCriacao;
-	}
+    public void setDataAtualizacao(Date dataAtualizacao) {
+        this.dataAtualizacao = dataAtualizacao;
+    }
 
-	@Column(name = "data_atualizacao", nullable = false)
-	public Date getDataAtualizacao() {
-		return dataAtualizacao;
-	}
+    @Column(name = "senha", nullable = false)
+    public String getSenha() {
+        return senha;
+    }
+    
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 
-	public void setDataAtualizacao(Date dataAtualizacao) {
-		this.dataAtualizacao = dataAtualizacao;
-	}
+    @ManyToOne(fetch = FetchType.EAGER)
+    public Empresa getEmpresa() {
+        return empresa;
+    }
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	public Empresa getEmpresa() {
-		return empresa;
-	}
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
 
-	public void setEmpresa(Empresa empresa) {
-		this.empresa = empresa;
-	}
+    @OneToMany(mappedBy = "funcionario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    public List<Lancamento> getLancamentos() {
+        return lancamentos;
+    }
 
-	@OneToMany(mappedBy = "funcionario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	public List<Lancamento> getLancamentos() {
-		return lancamentos;
-	}
+    public void setLancamentos(List<Lancamento> lancamentos) {
+        this.lancamentos = lancamentos;
+    }
+    
+    @PreUpdate
+    public void preUpdate() {
+        dataAtualizacao = new Date();
+    }
+     
+    @PrePersist
+    public void prePersist() {
+        final Date atual = new Date();
+        dataCriacao = atual;
+        dataAtualizacao = atual;
+    }
 
-	public void setLancamentos(List<Lancamento> lancamentos) {
-		this.lancamentos = lancamentos;
-	}
-	
-	@PreUpdate
-	public void preUpdate() {
-		dataAtualizacao = new Date();
-	}
-	
-	@PrePersist
-	public void prePersist() {
-		final Date atual = new Date();
-		dataCriacao = atual;
-		dataAtualizacao = atual;
-	}
+    @Override
+    public String toString() {
+        return "Funcionario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", cpf=" + cpf
+                + ", valorHora=" + valorHora + ", qtdHorasTrabalhoDia=" + qtdHorasTrabalhoDia + ", qtdHorasAlmoco="
+                + qtdHorasAlmoco + ", perfil=" + perfil + ", dataCriacao="
+                + dataCriacao + ", dataAtualizacao=" + dataAtualizacao + ", empresa=" + empresa + "]";
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Funcionario [id=");
-		builder.append(id);
-		builder.append(", nome=");
-		builder.append(nome);
-		builder.append(", email=");
-		builder.append(email);
-		builder.append(", senha=");
-		builder.append(senha);
-		builder.append(", cpf=");
-		builder.append(cpf);
-		builder.append(", valorHora=");
-		builder.append(valorHora);
-		builder.append(", qtHorasTrabalhoDia=");
-		builder.append(qtHorasTrabalhoDia);
-		builder.append(", qtHorasAlmoco=");
-		builder.append(qtHorasAlmoco);
-		builder.append(", perfil=");
-		builder.append(perfil);
-		builder.append(", dataCriacao=");
-		builder.append(dataCriacao);
-		builder.append(", dataAtualizacao=");
-		builder.append(dataAtualizacao);
-		builder.append(", empresa=");
-		builder.append(empresa);
-		builder.append(", lancamentos=");
-		builder.append(lancamentos);
-		builder.append("]");
-		return builder.toString();
-	}
-	
-	
 }

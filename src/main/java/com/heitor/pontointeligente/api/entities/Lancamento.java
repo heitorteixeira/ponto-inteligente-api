@@ -39,7 +39,20 @@ public class Lancamento implements Serializable {
 		
 	}
 
-	@Id
+	public Lancamento(Long id, Date data, String descricao, String localizacao, Date dataCriacao, Date dataAtualizacao,
+            TipoEnum tipo, Funcionario funcionario) {
+        super();
+        this.id = id;
+        this.data = data;
+        this.descricao = descricao;
+        this.localizacao = localizacao;
+        this.dataCriacao = dataCriacao;
+        this.dataAtualizacao = dataAtualizacao;
+        this.tipo = tipo;
+        this.funcionario = funcionario;
+    }
+
+    @Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
 		return id;

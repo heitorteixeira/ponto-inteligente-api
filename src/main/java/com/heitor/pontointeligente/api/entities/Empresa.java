@@ -33,7 +33,18 @@ public class Empresa implements Serializable {
 		
 	}
 
-	@Id
+	public Empresa(Long id, String razaoSocial, String cnpj, Date dataCriacao, Date dataAtualizacao,
+            List<Funcionario> funcionarios) {
+        super();
+        this.id = id;
+        this.razaoSocial = razaoSocial;
+        this.cnpj = cnpj;
+        this.dataCriacao = dataCriacao;
+        this.dataAtualizacao = dataAtualizacao;
+        this.funcionarios = funcionarios;
+    }
+
+    @Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	public Long getId() {
 		return id;

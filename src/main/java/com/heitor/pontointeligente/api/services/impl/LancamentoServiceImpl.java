@@ -14,7 +14,7 @@ import com.heitor.pontointeligente.api.repositories.LancamentoRepository;
 import com.heitor.pontointeligente.api.services.LancamentoService;
 
 @Service
-public class LancamentoServiceImpl  implements LancamentoService{
+public class LancamentoServiceImpl implements LancamentoService{
 
 	private static final Logger log = LoggerFactory.getLogger(LancamentoServiceImpl.class);
 	
